@@ -1,0 +1,40 @@
+<body>
+ <% if @test %> 
+    <!-- Header -->
+    <header id="top" class="header" style="background-image:url(/assets/bg.png); background-size:100% 100%;">
+        <div class="text-vertical-center">
+            <h2>
+                현재시간 : <%= @when %>시 <%= @when2 %>분 
+            </h2><hr>
+            <div class="row" style="height:230px;">
+                <h3>현재 예상 대기 시간</h3>
+                <h2><%= @mean_time.round(1) %>분</h2>
+                <h3>예상 대기 인원</h2>
+                <h2><%= @mean_num.round%>명</h2>
+            </div> <hr>
+            <div class="row" style="height:70px; background-color:white;">
+                <div class="btn-group" role="group" aria-label="...">
+                  <a href="/"><button type="button" class="bttn hanna" style="height:40px; width:120px;">메인 화면으로</button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+<% else %>
+    <header id="top" class="header" style="background-image:url(/assets/bg.png); background-size:100% 100%;">
+        <div class="text-vertical-center">
+            <h2>
+                현재시간 : <%= @when %>시 <%= @when2 %>분 
+            </h2><hr>
+            <div class="row" style="height:230px;">
+                <h2>영업 시간이 아니에요!</h2><br>
+                <h2>아침 8시 이후에 오세요!</h2>
+            </div> <hr>
+            <div class="row" style="height:70px; background-color:white;">
+                <div class="btn-group" role="group" aria-label="...">
+                  <a href="/"><button type="button" class="bttn hanna" style="height:40px; width:120px;">메인 화면으로</button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+<% end %>    
+</body>

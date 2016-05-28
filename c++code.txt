@@ -1,0 +1,121 @@
+/*
+A simple M/M/m/k queue simulation 
+Created by Kyungrok Park
+*/
+
+#include <stdio.h>
+#include <stdlib.h> // Needed for rand() and RAND_MAX
+#include <math.h> // Needed for log()
+#include <iostream>
+#include <unistd.h>
+#include <time.h>
+using namespace std;
+
+//Constants
+#define SIM_TIME 60.0 // Simulation time
+#define Loop 10000.000 // Number of repeat
+
+//Function prototypes
+double expntl1(double x); // Generate exponential RV with mean x
+double expntl2(double x); // Generate exponential RV with mean x
+double general();
+
+//Main program
+int main(void) {
+	double throughput=0.0;
+	double mean_num=0.0;
+	double mean_time=0.0;
+	
+	for(int i=1;i<=Loop;i++) { // Simulate 1,000,000 times
+		double end_time = SIM_TIME; // Total time to simulate
+		double Ta = 5.0; // Mean time between arrivals
+		double Ts = 4.0; // Mean service time
+		int m=1; //no of servers
+		double time = 0.0; // Simulation time
+		double t1 = 0.0; // Time for next event #1 (arrival)
+		double t2 = SIM_TIME; // Time for next event #2 (departure)
+		long int n = 0; // Number of customers in the system
+		long int k=10; //buffer space
+		double c = 0.0; // Number of service completions
+		double s = 0.0; // Area of number of customers in system
+		double tn = time; // Variable for "last event time"
+		double x = 0.0; // Throughput
+		double l = 0.0; // Mean number in the system
+		double w = 0.0; // Mean residence time
+
+		// Main simulation loop
+		while (time < end_time) {
+			if (t1 < t2) {// *** Event #1 (arrival)
+				time = t1;
+				s = s + n * (time - tn); // Update area under "s" curve
+				if(n<k) n++;
+					tn = time; // tn = "last event time" for next event
+					t1 = time + expntl1(Ta);
+				if (n == 1)
+					t2 = time + expntl2(Ts);
+			}
+			else { // *** Event #2 (departure)
+				time = t2;
+				s = s + n * (time - tn); // Update area under "s" curve
+				if(n>m)
+					n-=m; else n=0;
+					tn = time; // tn = "last event time" for next event
+					c++; // Increment number of completions
+				if (n > 0)
+					t2 = time + expntl2(Ts);
+				else
+					t2 = end_time;
+			} 
+		}
+
+		x = c / time; // Compute throughput rate
+		l = s / time; // Compute mean number in system
+		w = l / x; // Compute mean residence or system time
+
+		if(l>0) {
+			throughput += c;
+			mean_num += l;
+			mean_time += w;		
+		}
+	}
+	throughput /= Loop;
+	mean_num /= Loop;
+	mean_time /= Loop;
+	 
+	cout<<"시간당 판매량 : "<<throughput<<"\n"<<"대기 인원 평균 : "<<mean_num<<"\n"<<"대기 시간 평균 : "<<mean_time<<endl;
+}
+
+/*
+Function to generate exponentially distributed RVs 
+Input: x (mean value of distribution) 
+Output: Returns with exponential RV 
+*/
+
+double expntl1(double x) {
+	double z; // Uniform random number from 0 to 1
+
+	// Pull a uniform RV (0 < z < 1)
+	do {
+		srand(time(NULL));
+		double a=rand()%10000;
+		z=a/10000;
+	}
+	while ((z == 0) || (z == 1));
+
+	return(-x * log(z));
+}
+
+double expntl2(double x) {
+	double z; // Uniform random number from 0.475 to 0.525
+
+	// Pull a uniform RV (0 < z < 1)
+	do {
+		srand(time(NULL));
+		double a=rand()%2000;
+		a=a+4000;
+		z=a/10000;
+	}
+	while ((z == 0) || (z == 1));
+
+	return(-x * log(z));
+}

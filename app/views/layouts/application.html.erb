@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>지금 JUCIY에 가면</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+</head>
+<body>
+
+<%= yield %>
+
+<style>
+    .hanna{
+        font-family: 'Hanna', serif;
+        font-size: 15px;
+        color:black;
+}
+
+    @font-face {
+      font-family: 'Hanna';
+      font-style: normal;
+      font-weight: 400;
+      src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot);
+      src: url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.eot?#iefix) format('embedded-opentype'),
+           url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff2) format('woff2'),
+           url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.woff) format('woff'),
+           url(//fonts.gstatic.com/ea/hanna/v3/BM-HANNA.ttf) format('truetype');
+}
+
+  .bttn{
+    width:160px;
+    height:40px;
+    border-width:2px;
+    border-color:#53585F;
+    border-style:solid;
+    border-radius:5px;
+    background-color:#DCDEE0;
+    margin:10 10 10 10;
+    outline:0;
+  }
+
+</style>
+</body>
+</html>

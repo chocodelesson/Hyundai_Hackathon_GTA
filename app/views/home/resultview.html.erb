@@ -6,11 +6,11 @@
             <h2>
                 현재시간 : <%= @when %>시 <%= @when2 %>분 
             </h2><hr>
-            <div class="row" style="height:230px;">
-                <h3>현재 예상 대기 시간</h3>
+            <div class="row" style="height:190px;">
+                <h3><%= @when %>시 ~ <%= @when + 1 %>시의 예상 대기 시간</h3>
                 <h2><%= @mean_time.round(1) %>분</h2>
                 <h3>예상 대기 인원</h2>
-                <h2><%= @mean_num.round%>명</h2>
+                <h2><%= @mean_num.round(1) %>명</h2>
             </div> <hr>
             <div class="row" style="height:70px; background-color:white;">
                 <div class="btn-group" role="group" aria-label="...">
@@ -25,7 +25,7 @@
             <h2>
                 현재시간 : <%= @when %>시 <%= @when2 %>분 
             </h2><hr>
-            <div class="row" style="height:230px;">
+            <div class="row" style="height:190px;">
                 <h2>영업 시간이 아니에요!</h2><br>
                 <h2>아침 8시 이후에 오세요!</h2>
             </div> <hr>
@@ -37,4 +37,54 @@
         </div>
     </header>
 <% end %>    
+
+<footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>과즙 짜듯 착취 당하신 분들</strong></h4><br>
+                </div>
+            </div>
+        </div>
+               <br><br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 text-center">
+                             <div style="height:100px; width:120px; display:inline-block;">
+                                <p style="font-weight:bold; font-size:70%;">회귀 분석 & 시뮬레이션 모델</p><br>
+                                <img src="/assets/boaz.jpg" width="60" height="60"></label><br><br>
+                                <p style="color:skyblue;">빅데이터 연합동아리 BOAZ</p>
+                            </div>
+                            <br><br>
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-phone fa-fw"></i>박경록 | 김도연 | 임수만 | 이창준 | 홍성근</li>
+                                </li><br><br>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 text-center">
+                             <div style="height:100px; width:100px; display:inline-block;">
+                                <p style="font-weight:bold; font-size:70%;">웹서비스 제작 & 디자인</p><br>
+                                <img src="/assets/likelion.png" width="60" height="60"></label><br><br>
+                                <p style="color:orange;">멋쟁이사자처럼 서강대학교</p>
+                            </div>
+                            <br><br>
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-phone fa-fw"></i>박경록 | 김예찬 | 이호동 | 최형규</li>
+                                </li><br><br>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                    <br><br><br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1 text-center">
+                                <hr class="small">
+                                <p class="text-muted">Copyright &copy;</p>
+                                <p class="text-muted">빅데이터 연합동아리 BOAZ</p>
+                                <p class="text-muted">멋쟁이사자처럼 서강대학교</p>
+                            </div>
+                        </div>
+                    </div>
+    </footer>
 </body>
